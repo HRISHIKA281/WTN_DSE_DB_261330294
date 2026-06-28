@@ -1,0 +1,25 @@
+Question 1: EMPLOYEE Table (EMPNO, ENAME, SAL, DEPTNO, DNAME,
+LOC)
+Current State: 1st Normal Form (1NF)
+To eliminate the transitive dependency, the table is split into two:
+• EMPLOYEE_DETAILS (EMPNO, ENAME, SAL, DEPTNO)
+• DEPARTMENT (DEPTNO, DNAME, LOC)
+
+Question 2: STUDENT Table (ROLLNO, NAME, AGE, EXAM, MARKS, GRADE)
+Current State: 1st Normal Form (1NF)
+Solution (Decomposition to 2nd Normal Form):
+To eliminate partial dependencies, we decompose into two tables:
+• STUDENT_PROFILE (ROLLNO, NAME, AGE)
+• EXAM_PERFORMANCE (ROLLNO, EXAM, MARKS, GRADE)
+
+Question 3: EMPLOYEE-PROJECT Table (EMPNO, PROJECT_NO,
+NO_OF_DAYS, CUSTOMERNAME)
+Primary Key: Composite Key (EMPNO, PROJECT_NO)
+Problem: The table suffers from a Partial Dependency (a 2NF violation). The
+CUSTOMERNAME depends solely on the PROJECT_NO, regardless of which
+employee is working on it (PROJECT_NO → CUSTOMERNAME). This causes data
+redundancy and anomalies.
+Solution (Decomposition to 2nd Normal Form):
+Separate the partial dependency out into a clean lookup architecture:
+• PROJECT_CUSTOMER (PROJECT_NO, CUSTOMERNAME)
+• EMPLOYEE_WORK_LOG (EMPNO, PROJECT_NO, NO_OF_DAYS)
